@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05CC558A27C16314002C2FC3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC558927C16314002C2FC3 /* Card.swift */; };
+		05CC558C27C16469002C2FC3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CC558B27C16469002C2FC3 /* CardView.swift */; };
 		05DC8D4C27BEBEAE00AAF446 /* FlashzillaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC8D4B27BEBEAE00AAF446 /* FlashzillaApp.swift */; };
 		05DC8D4E27BEBEAE00AAF446 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DC8D4D27BEBEAE00AAF446 /* ContentView.swift */; };
 		05DC8D5027BEBEAF00AAF446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DC8D4F27BEBEAF00AAF446 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		05CC558927C16314002C2FC3 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		05CC558B27C16469002C2FC3 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		05DC8D4827BEBEAE00AAF446 /* Flashzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DC8D4B27BEBEAE00AAF446 /* FlashzillaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaApp.swift; sourceTree = "<group>"; };
 		05DC8D4D27BEBEAE00AAF446 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				05DC8D4B27BEBEAE00AAF446 /* FlashzillaApp.swift */,
 				05DC8D4D27BEBEAE00AAF446 /* ContentView.swift */,
+				05CC558B27C16469002C2FC3 /* CardView.swift */,
 				05CC558927C16314002C2FC3 /* Card.swift */,
 				05DC8D4F27BEBEAF00AAF446 /* Assets.xcassets */,
 				05DC8D5127BEBEAF00AAF446 /* Preview Content */,
@@ -142,6 +145,7 @@
 			files = (
 				05DC8D4E27BEBEAE00AAF446 /* ContentView.swift in Sources */,
 				05CC558A27C16314002C2FC3 /* Card.swift in Sources */,
+				05CC558C27C16469002C2FC3 /* CardView.swift in Sources */,
 				05DC8D4C27BEBEAE00AAF446 /* FlashzillaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
