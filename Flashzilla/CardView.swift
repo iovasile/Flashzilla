@@ -13,6 +13,7 @@ struct CardView: View {
     
     let card: Card
     let removeCard: () -> Void
+    let reuseCard: () -> Void
     
     @State private var isShowingAnswer = false
     @State private var offset = CGSize.zero
@@ -63,8 +64,14 @@ struct CardView: View {
                     if abs(offset.width) > 240 {
                         if offset.width < 0 {
                             feedback.notificationOccurred(.error)
+                            withAnimation {
+                                reuseCard()
+                                offset = .zero
+                            }
+                        } else {
+                           removeCard()
                         }
-                        removeCard()
+                        
                     } else {
                         withAnimation {
                             offset = .zero
@@ -79,6 +86,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card.example) { }
+        CardView(card: Card.example) { } reuseCard: {}
     }
 }
