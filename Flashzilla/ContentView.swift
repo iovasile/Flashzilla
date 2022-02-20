@@ -14,8 +14,9 @@ struct ContentView: View {
     @Environment(\.accessibilityVoiceOverEnabled) var hasVoiceOverEnabled
     
     @State private var timerIsActive = true
-    @State private var cards = [Card].init(repeating: Card.example, count: 10)
+    @State private var cards = [Card]()
     @State private var timeRemaining = 90
+    @State private var showingEditScreen = false
     
     var body: some View {
         ZStack {
@@ -48,6 +49,26 @@ struct ContentView: View {
                         .clipShape(Capsule())
                 }
             }
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        showingEditScreen = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .padding()
+                            .background(.black.opacity(0.7))
+                            .clipShape(Circle())
+                    }
+                }
+                
+                Spacer()
+            }
+            .foregroundColor(.white)
+            .font(.largeTitle)
+            .padding()
+            
             if isColorBlind || hasVoiceOverEnabled {
                 VStack {
                     Spacer()
@@ -89,6 +110,7 @@ struct ContentView: View {
                 }
             }
         }
+        .sheet(isPresented: $showingEditScreen, onDismiss: resetCards, content: EditCards.init)
         .onReceive(timer) { time in
             guard timerIsActive else { return }
             if timeRemaining > 0 {
@@ -104,6 +126,7 @@ struct ContentView: View {
                 timerIsActive = false
             }
         }
+        .onAppear(perform: resetCards)
     }
     
     func removeCard(at index: Int) {
@@ -113,7 +136,11 @@ struct ContentView: View {
     }
     
     func resetCards() {
-        cards = [Card].init(repeating: Card.example, count: 10)
+        if let data = UserDefaults.standard.data(forKey: "Cards") {
+            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
+                cards = decoded
+            }
+        }
         timeRemaining = 90
         timerIsActive = true
     }
