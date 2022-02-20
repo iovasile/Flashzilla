@@ -24,7 +24,7 @@ struct CardView: View {
                 .fill(.white.opacity(isColorBlind ? 1 : 1 - Double(abs(offset.width / 500))))
                 .background(
                     isColorBlind ? nil : RoundedRectangle(cornerRadius: 25, style: .continuous)
-                        .fill(offset.width > 0 ? .green : .red)
+                        .fill(offset.width > 0 ? .green : offset.width < 0 ? .red : .white)
                 )
                 .shadow(radius: 10)
             
