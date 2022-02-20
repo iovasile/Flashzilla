@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CardView: View {
+    @Environment(\.accessibilityDifferentiateWithoutColor) var isColorBlind
+    
     let card: Card
     let removeCard: () -> Void
     
@@ -17,7 +19,11 @@ struct CardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                .fill(.white)
+                .fill(.white.opacity(isColorBlind ? 1 : 1 - Double(abs(offset.width / 500))))
+                .background(
+                    isColorBlind ? nil : RoundedRectangle(cornerRadius: 25, style: .continuous)
+                        .fill(offset.width > 0 ? .green : .red)
+                )
                 .shadow(radius: 10)
             
             VStack {
@@ -36,14 +42,14 @@ struct CardView: View {
         .frame(width: 450, height: 250)
         .rotationEffect(.degrees(Double(offset.width / 15)))
         .offset(x: offset.width, y: 0)
-        .opacity(2 - Double(abs(offset.width / 250)))
+        .opacity(2 - Double(abs(offset.width / 500)))
         .gesture(
             DragGesture()
                 .onChanged { gesture in
                     offset = gesture.translation
                 }
                 .onEnded { _ in
-                    if abs(offset.width) > 250 {
+                    if abs(offset.width) > 240 {
                         removeCard()
                     } else {
                         withAnimation {

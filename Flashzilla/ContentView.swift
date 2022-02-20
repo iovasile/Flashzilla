@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var cards = [Card].init(repeating: Card.example, count: 10)
-    
+    @Environment(\.accessibilityDifferentiateWithoutColor) var isColorBlind
     
     var body: some View {
         ZStack {
@@ -22,6 +22,25 @@ struct ContentView: View {
                         CardView(card: cards[index]) { withAnimation { removeCard(at: index) } }
                         .stacked(at: index, in: cards.count)
                     }
+                }
+            }
+            if isColorBlind {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Image(systemName: "xmark.circle")
+                            .padding()
+                            .background(.black.opacity(0.7))
+                            .clipShape(Circle())
+                        Spacer()
+                        Image(systemName: "checkmark.circle")
+                            .padding()
+                            .background(.black.opacity(0.7))
+                            .clipShape(Circle())
+                    }
+                    .foregroundColor(.white)
+                    .font(.largeTitle)
+                    .padding()
                 }
             }
         }
